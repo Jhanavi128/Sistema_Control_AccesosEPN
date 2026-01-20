@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escaneo QR - EPN</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            width: 320px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #7A0019; /* Color EPN */
+        }
+
+        video {
+            display: none;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #7A0019;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5e0014;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Escaneo de QR</h2>
+
+    <video id="video"></video>
+
+    <button onclick="iniciarEscaneo()">Escanear</button>
+
+    <p id="resultado"></p>
+</div>
+
+<script src="qr.js"></script>
+</body>
+</html>
