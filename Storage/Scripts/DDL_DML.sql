@@ -1,6 +1,10 @@
 -- database: storage\Databases\bd_acceso_epn.sqlite
 DROP TABLE IF EXISTS Usuario;
 DROP TABLE IF EXISTS QRAcceso;
+DROP TABLE IF EXISTS RegistroIngreso;
+DROP TABLE IF EXISTS Estudiante;
+DROP TABLE IF EXISTS Periodo;
+
 CREATE TABLE Usuario (
     IdUsuario       INT PRIMARY KEY AUTO_INCREMENT,
     Nombre          VARCHAR(100) NOT NULL,
