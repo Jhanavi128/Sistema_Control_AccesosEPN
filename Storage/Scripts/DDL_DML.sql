@@ -61,3 +61,19 @@ CREATE TABLE RegistroIngreso(
     Resultado         TEXT NOT NULL CHECK (Resultado IN ('Autorizado','Rechazado','Inválido')),
     FOREIGN KEY (IdQRAcceso) REFERENCES QRAcceso (IdQRAcceso)
 );
+
+-- 1. Insertar un Periodo Académico
+INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin)
+VALUES ('Software', 6, '2025-B', '2025-10-01', '2026-03-01');
+
+-- 2. Insertar un Usuario (quien genera/valida el acceso)
+INSERT INTO Usuario (Nombre, Apellido, Correo, Contrasena, Rol)
+VALUES ('Danny', 'Lanchimba', 'danny.lanchimba@epn.edu.ec', '1234', 'Admin');
+
+-- 3. Insertar un Estudiante vinculado al periodo
+INSERT INTO Estudiante (IdPeriodo, Nombre, Apellido, Cedula, CodigoUnico, FechaNacimiento, Sexo)
+VALUES (1, 'Danny', 'Lanchimba', '1700000000', '202210000', '2000-01-01', 'M');
+
+-- 4. Insertar el QR de prueba vinculado al Usuario 1
+INSERT INTO QRAcceso (IdUsuario, CodigoQR, Estado)
+VALUES (1, 'EPN-2026-ABC', 1);
