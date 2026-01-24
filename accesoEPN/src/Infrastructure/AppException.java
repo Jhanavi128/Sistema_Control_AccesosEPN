@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.io.File;
+
 
 public class AppException extends Exception {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -24,11 +26,20 @@ public class AppException extends Exception {
         logMsg = (logMsg == null || logMsg.isBlank()) ? AppConfig.MSG_DEFAULT_ERROR : logMsg;
         logMsg = String.format("╭─💀─ SHOW ❱❱ %s \n╰──── LOG  ❱❱ %s | %s.%s | %s", getMessage(), timestamp, className, methodName, logMsg);
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(AppConfig.LOGFILE, true))) {
-            System.err.println(CMDColor.BLUE  + logMsg);
-            writer.println(logMsg);
+        try {
+            File logFile = new File(AppConfig.LOGFILE);
+            File parentDir = logFile.getParentFile();
+
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs(); // CREA Storage\Logs
+            }
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter(logFile, true))) {
+                System.err.println(CMDColor.BLUE + logMsg);
+                writer.println(logMsg);
+            }
         } catch (Exception e) {
-            System.err.println(CMDColor.RED  + "[AppException.saveLogFile] ❱ " + e.getMessage());
+            System.err.println(CMDColor.RED + "[AppException.saveLogFile] ❱ " + e.getMessage());
         }finally {
             System.out.println(CMDColor.RESET);
         }

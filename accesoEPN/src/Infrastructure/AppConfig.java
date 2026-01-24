@@ -3,7 +3,7 @@ package Infrastructure;
 public abstract class AppConfig {
     //Paths Storage
     public static final String DATABASE = "jdbc:sqlite:Storage\\DataBase\\bd_acceso_epn.sqlite";
-    public static final String LOGFILE  = "storage\\Logs\\AppErrors.log";
+    public static final String LOGFILE  = "Storage\\Logs\\AppErrors.log";
 
     //Resources
     //public static final URL URL_MAIN    = AppConfig.class.getResource("Resource/logo.png");
