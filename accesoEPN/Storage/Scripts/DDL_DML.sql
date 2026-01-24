@@ -77,3 +77,17 @@ VALUES (1, 'Danny', 'Lanchimba', '1700000000', '202210000', '2000-01-01', 'M');
 -- 4. Insertar el QR de prueba vinculado al Usuario 1
 INSERT INTO QRAcceso (IdUsuario, CodigoQR, Estado)
 VALUES (1, 'EPN-2026-ABC', 1);
+
+-- 1. Insertar un Periodo Académico
+INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin)
+VALUES ('Software', 2, '2025-B', '2025-10-01', '2026-03-01');
+
+-- 2 Insertar un Estudiante vinculado al periodo
+INSERT INTO Estudiante (IdPeriodo, Nombre, Apellido, Cedula, CodigoUnico, FechaNacimiento, Sexo)
+VALUES (1, 'Jhanavi', 'Apellido', '1700000001', '202210001', '2001-01-01', 'F');
+--3
+INSERT INTO Usuario (Nombre, Apellido, Correo, Contrasena, Rol)
+VALUES ('Jhanavi', 'Apellido', 'jhanavi@epn.edu.ec', '1234', 'Estudiante');
+--4  Insertar el QR de prueba vinculado al Usuario 2
+INSERT INTO QRAcceso (IdUsuario, CodigoQR, Estado)
+VALUES (2, 'EPN-JHANAVI-2026', 1);
