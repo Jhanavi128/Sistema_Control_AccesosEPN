@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso EPN</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Acceso EPN (v4)</h1>
+            <p style="margin-bottom: 30px; font-weight: 300;">Ingrese sus credenciales</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="codigo">Código Único</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ej: 2024..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pin">PIN de Acceso</label>
+                    <input type="password" id="pin" name="pin" placeholder="****" required>
+                </div>
+
+                <p id="errorMsg" class="text-error hidden">Credenciales Incorrectas</p>
+
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const codigo = document.getElementById('codigo').value;
+            const pin = document.getElementById('pin').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            try {
+                const response = await fetch('/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'ngrok-skip-browser-warning': 'true'
+                    },
+                    body: `codigo=${encodeURIComponent(codigo)}&pin=${encodeURIComponent(pin)}`
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.userCode) {
+                        localStorage.setItem('user_code', data.userCode);
+                    }
+                    window.location.href = data.redirect;
+                } else {
+                    errorMsg.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Error Login (v4): " + err.message);
+            }
+        });
+    </script>
+</body>
+
+</html>
