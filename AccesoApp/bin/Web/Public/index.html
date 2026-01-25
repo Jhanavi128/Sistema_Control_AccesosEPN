@@ -10,7 +10,6 @@
             height: 100vh;
             background: #f4f4f4;
             font-family: Arial, Helvetica, sans-serif;
-
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,14 +26,13 @@
 
         h2 {
             margin-bottom: 20px;
-            color: #7A0019; /* Color EPN */
+            color: #7A0019;
         }
 
-        video {
-            display: none;
+        #reader {
             width: 100%;
-            border-radius: 8px;
             margin-bottom: 15px;
+            display: none;
         }
 
         button {
@@ -48,15 +46,9 @@
             cursor: pointer;
         }
 
-        button:hover {
-            background: #5e0014;
-        }
-
         #resultado {
             margin-top: 15px;
             font-size: 14px;
-            color: #333;
-            word-break: break-word;
         }
     </style>
 </head>
@@ -65,13 +57,64 @@
 <div class="card">
     <h2>Escaneo de QR</h2>
 
-    <video id="video"></video>
+    <div id="reader"></div>
 
-    <button onclick="iniciarEscaneo()">Escanear</button>
+    <button onclick="iniciarEscaneo()">Escanear </button>
 
     <p id="resultado"></p>
 </div>
 
-<script src="qr.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script>
+let scanner = null;
+let escaneando = false;
+let yaLeido = false;
+
+const resultado = document.getElementById("resultado");
+const reader = document.getElementById("reader");
+
+function iniciarEscaneo() {
+
+    // Reset total
+    resultado.innerText = "";
+    yaLeido = false;
+    escaneando = true;
+
+    reader.style.display = "block";
+
+    scanner = new Html5Qrcode("reader");
+
+    scanner.start(
+        { facingMode: "environment" },
+        { fps: 5, qrbox: 250 },
+        async (qrText) => {
+
+            // 🔒 BLOQUEO ABSOLUTO
+            if (!escaneando || yaLeido) return;
+
+            yaLeido = true;
+            escaneando = false;
+
+            resultado.innerText = "QR leído: " + qrText;
+
+            // 🔥 ENVIAR A JAVA (UNA SOLA VEZ)
+            fetch("/validar?codigo=" + encodeURIComponent(qrText));
+
+            // ⛔ DETENER TODO DE INMEDIATO
+            await scanner.stop();
+            await scanner.clear();
+
+            reader.style.display = "none";
+        },
+        error => {
+            // errores normales de escaneo
+        }
+    );
+}
+</script>
+
+
+
 </body>
 </html>

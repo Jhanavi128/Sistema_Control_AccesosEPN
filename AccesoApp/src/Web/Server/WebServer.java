@@ -6,8 +6,7 @@ import java.net.InetSocketAddress;
 public class WebServer {
 
     public static void start() throws Exception {
-        HttpServer server =
-            HttpServer.create(new InetSocketAddress(8080), 0);
+        HttpServer server =HttpServer.create(new InetSocketAddress(8080), 0);
 
         server.createContext("/", new StaticHandler());
         server.createContext("/validar", new ValidateHandler());
