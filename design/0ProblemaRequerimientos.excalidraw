@@ -1,0 +1,51 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
+  "elements": [
+    {
+      "id": "wpDEL3oPPYtJdqNTqY-ys",
+      "type": "text",
+      "x": 357.2000732421875,
+      "y": 1362.1666196121128,
+      "width": 780.3193969726562,
+      "height": 725,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a1",
+      "roundness": null,
+      "seed": 895390236,
+      "version": 2480,
+      "versionNonce": 1096429790,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1763601955174,
+      "link": null,
+      "locked": false,
+      "text": "Requerimientos:\nR01:El estudiante debe generar un QR único de acceso, ingresando su\ncódigo único y pin en el sistema.\nR02: El sistema debe validar el código único del estudiante y el pin\nR03: El estudiante debe poder descargar el QR.\nR04: El sistema debe permitir el escaneo de QR mediante un dispositivo externo\n(Telféfono celular, escáner).\nR05: El sistema debe conectar con la base de datos de la universidad\ny verficar que el QR está vinculado a un estudiante.\nR06: Verificar que el estudiante se encuentre estudiando en el\nperiodo actual.\nR07: El sistema debe mostrar mensaje de error si el QR no \nes válido.\nRO8: El sistema debe mostrar mensaje de error si el estudiante \nno se encuentra matriculado en el periodo actual.\nR09: El sistema debe mostrar los datos del estudiante al momento\ndel escaneo.\nRO10: El sistema debe registrar las horas de entrada y salida de\nel estudiante de la universidad.\nR11: El sistema debe validar que para usar el QR nuevamente \nel estudiante debe haber salido de la universidad primero.\nR12: El administrador puede agregar, eliminar, editar información\nde los estudiantes en la base de datos.\nR13: El sistema debe notificar al administrador del uso de QR que no\nconsten en la base de datos y de comportamiento irregular de los QR.\nR14: El administrador puede desactivar momentaneamente el sistema para \npermitir la salida de estudiantes en caso de emergencia.\n\n",
+      "fontSize": 20,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Requerimientos:\nR01:El estudiante debe generar un QR único de acceso, ingresando su\ncódigo único y pin en el sistema.\nR02: El sistema debe validar el código único del estudiante y el pin\nR03: El estudiante debe poder descargar el QR.\nR04: El sistema debe permitir el escaneo de QR mediante un dispositivo externo\n(Telféfono celular, escáner).\nR05: El sistema debe conectar con la base de datos de la universidad\ny verficar que el QR está vinculado a un estudiante.\nR06: Verificar que el estudiante se encuentre estudiando en el\nperiodo actual.\nR07: El sistema debe mostrar mensaje de error si el QR no \nes válido.\nRO8: El sistema debe mostrar mensaje de error si el estudiante \nno se encuentra matriculado en el periodo actual.\nR09: El sistema debe mostrar los datos del estudiante al momento\ndel escaneo.\nRO10: El sistema debe registrar las horas de entrada y salida de\nel estudiante de la universidad.\nR11: El sistema debe validar que para usar el QR nuevamente \nel estudiante debe haber salido de la universidad primero.\nR12: El administrador puede agregar, eliminar, editar información\nde los estudiantes en la base de datos.\nR13: El sistema debe notificar al administrador del uso de QR que no\nconsten en la base de datos y de comportamiento irregular de los QR.\nR14: El administrador puede desactivar momentaneamente el sistema para \npermitir la salida de estudiantes en caso de emergencia.\n\n",
+      "autoResize": true,
+      "lineHeight": 1.25
+    }
+  ],
+  "appState": {
+    "gridSize": 20,
+    "gridStep": 5,
+    "gridModeEnabled": false,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
