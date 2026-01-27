@@ -13,12 +13,10 @@ import java.util.Map;
 public class EstudianteHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        // Configuramos cabeceras para permitir CORS y definir JSON como respuesta
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().add("Content-Type", "application/json; charset=UTF-8");
 
         try {
-            // Extraer parámetros de la URL
             Map<String, String> params = queryToMap(exchange.getRequestURI().getQuery());
             String idStr = params.get("idUsuario");
 
@@ -27,7 +25,6 @@ public class EstudianteHandler implements HttpHandler {
                 return;
             }
 
-            // Llamada a la lógica de negocio
             BLEstudiante bl = new BLEstudiante();
             EstudianteDTO est = bl.getByUsuarioId(Integer.parseInt(idStr));
 
@@ -36,24 +33,22 @@ public class EstudianteHandler implements HttpHandler {
                 return;
             }
 
-            // Validamos que el CodigoUnico no sea nulo antes de enviar
-            String codigo = est.getCodigoUnico();
-            if (codigo == null || codigo.isEmpty()) {
-                codigo = "SIN_CODIGO_ASIGNADO";
-            }
+            String codigo = (est.getCodigoUnico() != null) ? est.getCodigoUnico() : "SIN_CODIGO";
+            String carrera = (est.getCarrera() != null) ? est.getCarrera() : "Carrera no asignada";
+            String periodo = (est.getNombrePeriodo() != null) ? est.getNombrePeriodo() : "N/A";
 
-            // Construcción del JSON final
             String json = String.format(
-                "{\"nombre\":\"%s\",\"apellido\":\"%s\",\"codigoUnico\":\"%s\",\"carrera\":\"Software\",\"periodo\":\"2025-B\"}",
+                "{\"nombre\":\"%s\",\"apellido\":\"%s\",\"codigoUnico\":\"%s\",\"carrera\":\"%s\",\"periodo\":\"%s\"}",
                 est.getNombre(), 
                 est.getApellido(), 
-                codigo
+                codigo,
+                carrera,
+                periodo
             );
 
             sendResponse(exchange, 200, json);
 
         } catch (Exception e) {
-            // Imprimimos el error en la consola del servidor para debuggear
             e.printStackTrace(); 
             sendResponse(exchange, 500, "{\"error\":\"Error en el servidor: " + e.getMessage() + "\"}");
         }

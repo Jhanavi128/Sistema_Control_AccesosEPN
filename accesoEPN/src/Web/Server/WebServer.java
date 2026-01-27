@@ -10,36 +10,37 @@ public class WebServer {
     public static void start() throws Exception {
         int port = 8080;
         
-        // 1. Ruta directa (Hardcoded para máxima velocidad)
-        // Usamos el separador del sistema para evitar problemas de compatibilidad
+        // 1. Localización del directorio de archivos públicos (HTML, CSS, JS)
         String rootPath = new File("accesoEPN/src/Web/Public").getAbsolutePath();
 
-        // 2. Validación rápida
+        // Validación de ruta (ajuste para diferentes entornos de ejecución)
         File dir = new File(rootPath);
         if (!dir.exists()) {
-            // Solo si falla la ruta principal, intentamos la alternativa corta
             rootPath = new File("src/Web/Public").getAbsolutePath();
         }
 
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
-        // 3. Registro de Contextos (Ordenados por frecuencia de uso)
-        server.createContext("/login", new LoginHandler());
-        server.createContext("/validate", new ValidateHandler()); // El guardia usará mucho este
-        server.createContext("/guardia", new GuardiaHandler());
+        // 2. Registro de Contextos (Endpoints de la API)
+        // Mantenemos /api/guardia como la ruta principal para el escáner
+        server.createContext("/login",          new LoginHandler());
+        server.createContext("/api/guardia",    new GuardiaHandler());
         server.createContext("/api/estudiante", new EstudianteHandler());
-        // En tu método main o donde inicies el servidor:
-        server.createContext("/validarAcceso", new GuardiaHandler());
         
-        // El manejador de estáticos siempre al final para que no interfiera con la API
+        // Mantenemos estos por compatibilidad si tienes otros botones usándolos
+        server.createContext("/validate",       new ValidateHandler()); 
+
+        // 3. Manejador de Archivos Estáticos
+        // Este debe ir al final para que actúe como "catch-all"
         server.createContext("/", new StaticHandler(rootPath));
 
-        // 4. Executor con pool pequeño para inicio instantáneo
+        // 4. Configuración del Executor para manejo de múltiples hilos
         server.setExecutor(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
         
         server.start();
 
-        System.out.println("🚀 WebServer Express listo en: http://localhost:" + port);
-        System.out.println("📂 Directorio: " + rootPath);
+        System.out.println("🚀 Servidor EPN corriendo en: http://localhost:" + port);
+        System.out.println("📂 Sirviendo archivos desde: " + rootPath);
+        System.out.println("📡 API Guardia lista en: /api/guardia");
     }
 }

@@ -15,6 +15,9 @@ public class EstudianteDTO {
     private String  FechaCreacion;
     private String  FechaModifica;
 
+    private String  carrera; 
+    private String  nombrePeriodo;
+
     // 🔹 Constructor vacío (OBLIGATORIO para el Factory)
     public EstudianteDTO() {}
 
@@ -167,8 +170,20 @@ public class EstudianteDTO {
     public void setFechaModifica(String fechaModifica) {
         FechaModifica = fechaModifica;
     }
+    public String getCarrera() { 
+        return carrera; 
+    }
+    public void setCarrera(String carrera) { 
+        this.carrera = carrera;
+    }
+    public String getNombrePeriodo() { 
+        return nombrePeriodo; 
+    }
+    public void setNombrePeriodo(String nombrePeriodo) { 
+        this.nombrePeriodo = nombrePeriodo; 
+    }
 
-    // 🔹 toString estilo profe
+    
     @Override
     public String toString() {
         return getClass().getName()

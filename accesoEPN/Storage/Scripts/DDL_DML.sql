@@ -76,9 +76,24 @@ CREATE TABLE RegistroIngreso(
 INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin) 
 VALUES ('Ingeniería en Software', 2, '2025-B','2025-10-01', '2026-03-01');
 
+INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin) 
+VALUES ('Ingeniería civil', 2, '2000-A','2025-10-01', '2026-03-01');
+
 INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) VALUES ('202210001', '1234', 'Estudiante');
 INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) VALUES ('GUARDIA01', '1234', 'Guardia');
 
 -- Ahora Estudiante ya tiene su propio CodigoUnico (Redundancia controlada para optimizar lectura)
 INSERT INTO Estudiante (IdUsuario, IdPeriodo, CodigoUnico, Nombre, Apellido, Cedula, FechaNacimiento, Sexo) 
 VALUES (1, 1, '202210001', 'Jhanavi', 'Apellido', '1700000001', '2001-01-01', 'F');
+
+-- 1. Insertamos el Usuario para el Login
+INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) 
+VALUES ('202420421', '12345', 'Estudiante');
+
+-- 2. Insertamos los datos en la tabla Estudiante
+-- Explicación de los valores:
+-- last_insert_rowid(): Toma el ID del usuario 'diego' que acabamos de crear.
+-- 1: El IdPeriodo (asumiendo que es el de Software 2025-B que ya tenías).
+-- '1799999999': Cédula inventada (debe ser única).
+INSERT INTO Estudiante (IdUsuario, IdPeriodo, CodigoUnico, Nombre, Apellido, Cedula, FechaNacimiento, Sexo) 
+VALUES (last_insert_rowid(), 2, '202420421', 'Diego', 'Pérez', '1799999999', '2004-05-20', 'M');

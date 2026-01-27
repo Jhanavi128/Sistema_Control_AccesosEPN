@@ -3,39 +3,42 @@ package DataAccess.DTOs;
 public class RegistroIngresoDTO {
 
     private Integer IdRegistroIngreso;
-    private Integer IdUsuario;
-    private Integer IdQRAcceso;
-
+    private Integer IdUsuario;     // El Guardia que escanea
+    private Integer IdEstudiante;  // El Estudiante que ingresa
     private String  Resultado;
+    private String  Estado;
     private String  FechaCreacion;
     private String  FechaModifica;
 
     public RegistroIngresoDTO() {}
 
-    // 👉 constructor para INSERT
-    public RegistroIngresoDTO(Integer idUsuario,
-                              Integer idQRAcceso,
+    // 👉 Constructor para INSERT (Sin IDs autoincrementales ni fechas automáticas)
+    public RegistroIngresoDTO(Integer idUsuario, 
+                              Integer idEstudiante, 
                               String resultado) {
-        IdUsuario  = idUsuario;
-        IdQRAcceso = idQRAcceso;
-        Resultado  = resultado;
+        IdUsuario    = idUsuario;
+        IdEstudiante = idEstudiante;
+        Resultado    = resultado;
     }
 
-    // 👉 constructor completo (READ)
-    public RegistroIngresoDTO(Integer idRegistroIngreso,
-                              Integer idUsuario,
-                              Integer idQRAcceso,
-                              String resultado,
-                              String fechaCreacion,
+    // 👉 Constructor completo (Para lectura - READ)
+    public RegistroIngresoDTO(Integer idRegistroIngreso, 
+                              Integer idUsuario, 
+                              Integer idEstudiante, 
+                              String resultado, 
+                              String estado, 
+                              String fechaCreacion, 
                               String fechaModifica) {
         IdRegistroIngreso = idRegistroIngreso;
-        IdUsuario = idUsuario;
-        IdQRAcceso = idQRAcceso;
-        Resultado = resultado;
-        FechaCreacion = fechaCreacion;
-        FechaModifica = fechaModifica;
+        IdUsuario         = idUsuario;
+        IdEstudiante      = idEstudiante;
+        Resultado         = resultado;
+        Estado            = estado;
+        FechaCreacion     = fechaCreacion;
+        FechaModifica     = fechaModifica;
     }
 
+    // Getters y Setters
     public Integer getIdRegistroIngreso() {
         return IdRegistroIngreso;
     }
@@ -52,13 +55,12 @@ public class RegistroIngresoDTO {
         IdUsuario = idUsuario;
     }
 
-    public Integer getIdQRAcceso() {
-        return IdQRAcceso;
+    public Integer getIdEstudiante() {
+        return IdEstudiante;
     }
 
-    public void setIdQRAcceso(Integer idQRAcceso) {
-        IdQRAcceso = idQRAcceso;
-    
+    public void setIdEstudiante(Integer idEstudiante) {
+        IdEstudiante = idEstudiante;
     }
 
     public String getResultado() {
@@ -67,6 +69,14 @@ public class RegistroIngresoDTO {
 
     public void setResultado(String resultado) {
         Resultado = resultado;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
     }
 
     public String getFechaCreacion() {
@@ -90,10 +100,10 @@ public class RegistroIngresoDTO {
         return getClass().getName()
             + "\n IdRegistroIngreso : " + IdRegistroIngreso
             + "\n IdUsuario         : " + IdUsuario
-            + "\n IdQRAcceso        : " + IdQRAcceso
+            + "\n IdEstudiante      : " + IdEstudiante
             + "\n Resultado         : " + Resultado
+            + "\n Estado            : " + Estado
             + "\n FechaCreacion     : " + FechaCreacion
             + "\n FechaModifica     : " + FechaModifica;
     }
-
-}
+} 
