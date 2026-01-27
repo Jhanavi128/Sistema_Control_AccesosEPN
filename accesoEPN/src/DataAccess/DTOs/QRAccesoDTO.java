@@ -1,54 +1,56 @@
 package DataAccess.DTOs;
 
 public class QRAccesoDTO {
+
     private Integer IdQRAcceso;
     private Integer IdUsuario;
-    private String  Codigoqr;
+    private String  CodigoQR;
+    private Integer Estado;
     private String  FechaGeneracion;
-    private String  FechaExpiracion;       
-    private Integer Estado;       
+    private String  FechaExpiracion;
 
     public QRAccesoDTO() {}
 
-    // Constructor completo
-    public QRAccesoDTO(Integer idQRAcceso, Integer idUsuario, String codigoqr, String fechaGeneracion,
-                       String fechaExpiracion, String usado, Integer estado, String fechaCreacion, String fechaModifica) {
-        this.IdQRAcceso = idQRAcceso;
-        this.IdUsuario = idUsuario;
-        this.Codigoqr = codigoqr;
-        this.FechaGeneracion = fechaGeneracion;
-        this.FechaExpiracion = fechaExpiracion;
-        this.Estado = estado;
+    public QRAccesoDTO(Integer idQRAcceso, String codigoQR) {
+        IdQRAcceso = idQRAcceso;
+        CodigoQR = codigoQR;
     }
 
-    // GETTERS Y SETTERS
+    public QRAccesoDTO(Integer idQRAcceso, Integer idUsuario, String codigoQR,
+                       Integer estado, String fechaGeneracion, String fechaExpiracion) {
+        IdQRAcceso = idQRAcceso;
+        IdUsuario = idUsuario;
+        CodigoQR = codigoQR;
+        Estado = estado;
+        FechaGeneracion = fechaGeneracion;
+        FechaExpiracion = fechaExpiracion;
+    }
+
+    
     public Integer getIdQRAcceso() { return IdQRAcceso; }
-    public void setIdQRAcceso(Integer idQRAcceso) { this.IdQRAcceso = idQRAcceso; }
+    public void setIdQRAcceso(Integer idQRAcceso) { IdQRAcceso = idQRAcceso; }
 
     public Integer getIdUsuario() { return IdUsuario; }
-    public void setIdUsuario(Integer idUsuario) { this.IdUsuario = idUsuario; }
+    public void setIdUsuario(Integer idUsuario) { IdUsuario = idUsuario; }
 
-    public String getCodigoqr() { return Codigoqr; }
-    public void setCodigoqr(String codigoqr) { this.Codigoqr = codigoqr; }
-
-    public String getFechaGeneracion() { return FechaGeneracion; }
-    public void setFechaGeneracion(String fechaGeneracion) { this.FechaGeneracion = fechaGeneracion; }
-
-    public String getFechaExpiracion() { return FechaExpiracion; }
-    public void setFechaExpiracion(String fechaExpiracion) { this.FechaExpiracion = fechaExpiracion; }
+    public String getCodigoQR() { return CodigoQR; }
+    public void setCodigoQR(String codigoQR) { CodigoQR = codigoQR; }
 
     public Integer getEstado() { return Estado; }
-    public void setEstado(Integer estado) { this.Estado = estado; }
+    public void setEstado(Integer estado) { Estado = estado; }
+
+    public String getFechaGeneracion() { return FechaGeneracion; }
+    public void setFechaGeneracion(String fechaGeneracion) { FechaGeneracion = fechaGeneracion; }
+
+    public String getFechaExpiracion() { return FechaExpiracion; }
+    public void setFechaExpiracion(String fechaExpiracion) { FechaExpiracion = fechaExpiracion; }
 
     @Override
     public String toString() {
         return getClass().getName()
-        + "\n IdQRAcceso                     : "+ getIdQRAcceso          ()
-        + "\n IdUsuario                      : "+ getIdUsuario           ()
-        + "\n Codigoqr                       : "+ getCodigoqr            ()
-        + "\n FechaGeneracion                : "+ getFechaGeneracion     ()  
-        + "\n FechaExpiracion                : "+ getFechaExpiracion     ()
-        + "\n Estado                         : "+ getEstado             ();
+        + "\n IdQRAcceso     : " + getIdQRAcceso()
+        + "\n CodigoQR       : " + getCodigoQR()
+        + "\n Estado         : " + getEstado();
     }
 
 }

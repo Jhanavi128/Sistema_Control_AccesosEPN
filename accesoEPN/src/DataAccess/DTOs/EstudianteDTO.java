@@ -1,24 +1,38 @@
 package DataAccess.DTOs;
 
 public class EstudianteDTO {
+
     private Integer IdEstudiante;
+    private Integer IdUsuario;
     private Integer IdPeriodo;
     private String  Nombre;
     private String  Apellido;
     private String  Cedula;
-    private String  CodigoUnico;
+    private String CodigoUnico;
     private String  FechaNacimiento;
     private String  Sexo;
     private String  Estado;
     private String  FechaCreacion;
     private String  FechaModifica;
 
-    public EstudianteDTO(){}
+    // 🔹 Constructor vacío (OBLIGATORIO para el Factory)
+    public EstudianteDTO() {}
 
-    public EstudianteDTO(String nombre, String apellido, String cedula, String codigoUnico, String fechaNacimiento,
-            String sexo) {
-        IdEstudiante = 0;
-        IdPeriodo = 0;
+    // 🔹 Constructor base
+    public EstudianteDTO(
+            Integer idEstudiante,
+            Integer idUsuario,
+            Integer idPeriodo,
+            String nombre,
+            String apellido,
+            String cedula,
+            String codigoUnico,
+            String fechaNacimiento,
+            String sexo
+    ) {
+        IdEstudiante = idEstudiante;
+        IdUsuario = idUsuario;
+        IdPeriodo = idPeriodo;
         Nombre = nombre;
         Apellido = apellido;
         Cedula = cedula;
@@ -27,10 +41,23 @@ public class EstudianteDTO {
         Sexo = sexo;
     }
 
-    public EstudianteDTO(Integer idEstudiante, Integer idPeriodo, String nombre, String apellido, String cedula,
-            String codigoUnico, String fechaNacimiento, String sexo, String estado, String fechaCreacion,
-            String fechaModifica) {
+    // 🔹 Constructor completo
+    public EstudianteDTO(
+            Integer idEstudiante,
+            Integer idUsuario,
+            Integer idPeriodo,
+            String nombre,
+            String apellido,
+            String cedula,
+            String codigoUnico,
+            String fechaNacimiento,
+            String sexo,
+            String estado,
+            String fechaCreacion,
+            String fechaModifica
+    ) {
         IdEstudiante = idEstudiante;
+        IdUsuario = idUsuario;
         IdPeriodo = idPeriodo;
         Nombre = nombre;
         Apellido = apellido;
@@ -43,12 +70,22 @@ public class EstudianteDTO {
         FechaModifica = fechaModifica;
     }
 
-     public Integer getIdEstudiante() {
+    // 🔹 Getters y Setters
+
+    public Integer getIdEstudiante() {
         return IdEstudiante;
     }
 
     public void setIdEstudiante(Integer idEstudiante) {
         IdEstudiante = idEstudiante;
+    }
+
+    public Integer getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        IdUsuario = idUsuario;
     }
 
     public Integer getIdPeriodo() {
@@ -131,22 +168,21 @@ public class EstudianteDTO {
         FechaModifica = fechaModifica;
     }
 
+    // 🔹 toString estilo profe
     @Override
     public String toString() {
         return getClass().getName()
-        + "\n IdEstudiante                   : "+ getIdEstudiante        ()
-        + "\n IdPeriodo                      : "+ getIdPeriodo           ()
-        + "\n Nombre                         : "+ getNombre              ()
-        + "\n Apellido                       : "+ getApellido            ()  
-        + "\n Cedula                         : "+ getCedula              ()
-        + "\n CodigoUnico                    : "+ getCodigoUnico         ()
-        + "\n FechaNacimiento                : "+ getFechaNacimiento     ()
-        + "\n Sexo                           : "+ getSexo                ()
-        + "\n Estado                         : "+ getEstado              ()
-        + "\n FechaCreacion                  : "+ getFechaCreacion       ()
-        + "\n FechaModifica                  : "+ getFechaModifica       ();
+            + "\n IdEstudiante     : " + getIdEstudiante()
+            + "\n IdUsuario        : " + getIdUsuario()
+            + "\n IdPeriodo        : " + getIdPeriodo()
+            + "\n Nombre           : " + getNombre()
+            + "\n Apellido         : " + getApellido()
+            + "\n Cedula           : " + getCedula()
+            + "\n CodigoUnico      : " + getCodigoUnico()
+            + "\n FechaNacimiento  : " + getFechaNacimiento()
+            + "\n Sexo             : " + getSexo()
+            + "\n Estado           : " + getEstado()
+            + "\n FechaCreacion    : " + getFechaCreacion()
+            + "\n FechaModifica    : " + getFechaModifica();
     }
-
-
-    
 }

@@ -1,0 +1,284 @@
+/* Global Premium Styles */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+    --error-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    --success-gradient: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+    --background-color: #f0f2f5;
+    --text-color: #1a1a1a;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --font-family: 'Outfit', sans-serif;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0f172a;
+        --text-color: #ffffff;
+        --card-bg: rgba(30, 41, 59, 0.95);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* App like feel */
+}
+
+/* Glassmorphism Container */
+.container {
+    width: 100%;
+    max-width: 480px;
+    /* Mobile constraint */
+    height: 100dvh;
+    /* Dynamic scalable height */
+    overflow-y: auto;
+    position: relative;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Style for Forms/Content */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    width: 90%;
+    margin: auto;
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Modern Inputs */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: rgba(128, 128, 128, 0.1);
+    font-size: 18px;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    background: var(--card-bg);
+    border-color: #0061ff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 97, 255, 0.1);
+}
+
+/* Premium Buttons */
+.btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 97, 255, 0.3);
+}
+
+.btn-primary:active {
+    transform: scale(0.96);
+    box-shadow: 0 5px 10px rgba(0, 97, 255, 0.2);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Status Text */
+.text-error {
+    color: #ff4b2b;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.text-success {
+    color: #00b09b;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/* Scanner Styles */
+#reader {
+    width: 100%;
+    height: 100% !important;
+    background: black;
+}
+
+#reader video {
+    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 60px;
+    /* Moved up slightly */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    /* Increased from 80px */
+    height: 100px;
+    /* Increased from 80px */
+    border-radius: 50px;
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 97, 255, 0.5);
+    border: none;
+    font-size: 40px;
+    /* Increased icon size */
+    cursor: pointer;
+    z-index: 2000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab:active {
+    transform: translateX(-50%) scale(0.9);
+}
+
+/* Result Modal Slide-Up */
+#resultModal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Max height constraint to prevent cutoff on small screens */
+    max-height: 85vh;
+    overflow-y: auto;
+    /* Allow scrolling if content is too tall */
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    padding: 30px 20px 50px;
+    /* Reduced padding for better fit */
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(120%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 1000;
+    text-align: center;
+}
+
+#resultModal.show {
+    transform: translateY(0);
+}
+
+/* Ensure the student photo fits nicely */
+.student-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin: 15px auto;
+    display: block;
+}
+
+#resultModal.allowed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--success-gradient);
+}
+
+#resultModal.denied::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--error-gradient);
+}

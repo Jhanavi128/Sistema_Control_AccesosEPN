@@ -2,7 +2,7 @@ package Infrastructure;
 
 public abstract class AppConfig {
     //Paths Storage
-    public static final String DATABASE = "jdbc:sqlite:Storage\\DataBase\\bd_acceso_epn.sqlite";
+    public static final String DATABASE = "jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite";
     public static final String LOGFILE  = "storage\\Logs\\AppErrors.log";
 
     //Resources

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Credencial - EPN</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 style="color: #0061ff;">Credencial Digital EPN</h2>
+            <div id="qrcode" style="margin: 20px auto; display: flex; justify-content: center; background-color: white; padding: 15px; border-radius: 10px; width: fit-content; border: 1px solid #ddd;"></div>
+
+            <h3 id="uName">Cargando...</h3>
+            <p id="uCareer" style="color: #666;">Software</p>
+            <p id="uPeriod" style="font-size: 0.9em; color: #888;">Periodo: 2025-B</p>
+            <p id="uCode" style="font-size: 1.5em; font-weight: bold; color: #333; margin-top: 10px;">...</p>
+
+            <button type="button" onclick="logout()" class="btn" style="background-color: #f0f0f0; color: #333; margin-top: 20px; width: 100%; cursor: pointer; padding: 10px; border: 1px solid #ccc;">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const idUsuario = localStorage.getItem('id_usuario');
+            if (!idUsuario) { window.location.replace('/login.html'); return; }
+
+            try {
+                const res = await fetch(`/api/estudiante?idUsuario=${idUsuario}`);
+                const user = await res.json();
+
+                document.getElementById('uName').innerText = user.nombre + " " + user.apellido;
+                document.getElementById('uCode').innerText = user.codigoUnico;
+
+                const qrContainer = document.getElementById("qrcode");
+                qrContainer.innerHTML = "";
+                
+                if(user.codigoUnico && user.codigoUnico !== "null") {
+                    new QRCode(qrContainer, {
+                        text: user.codigoUnico,
+                        width: 180,
+                        height: 180
+                    });
+                } else {
+                    qrContainer.innerHTML = "Error: Código no encontrado";
+                }
+            } catch (err) {
+                document.getElementById('uName').innerText = "Error de conexión";
+            }
+        });
+
+        // SOLUCIÓN FINAL AL 405
+        function logout() {
+            // 1. Limpiar datos del navegador
+            localStorage.clear();
+            sessionStorage.clear();
+
+            // 2. Redirigir usando la URL completa del dominio actual
+            // Esto evita que el servidor interprete mal la ruta
+            const loginPath = window.location.origin + "src/Web/Public/login.html";
+            window.location.href = loginPath;
+        }
+    </script>
+</body>
+</html>

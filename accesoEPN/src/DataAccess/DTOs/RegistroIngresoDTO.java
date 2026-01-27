@@ -1,26 +1,55 @@
 package DataAccess.DTOs;
 
 public class RegistroIngresoDTO {
-    private Integer IdIngreso;
+
+    private Integer IdRegistroIngreso;
+    private Integer IdUsuario;
     private Integer IdQRAcceso;
-    private String  FechaHora;
+
     private String  Resultado;
+    private String  FechaCreacion;
+    private String  FechaModifica;
 
-    public RegistroIngresoDTO(){}
+    public RegistroIngresoDTO() {}
 
-    public RegistroIngresoDTO(String fechaHora, String resultado) {
-        IdIngreso = 0;
-        IdQRAcceso = 0;
-        FechaHora = fechaHora;
+    // 👉 constructor para INSERT
+    public RegistroIngresoDTO(Integer idUsuario,
+                              Integer idQRAcceso,
+                              String resultado) {
+        IdUsuario  = idUsuario;
+        IdQRAcceso = idQRAcceso;
+        Resultado  = resultado;
+    }
+
+    // 👉 constructor completo (READ)
+    public RegistroIngresoDTO(Integer idRegistroIngreso,
+                              Integer idUsuario,
+                              Integer idQRAcceso,
+                              String resultado,
+                              String fechaCreacion,
+                              String fechaModifica) {
+        IdRegistroIngreso = idRegistroIngreso;
+        IdUsuario = idUsuario;
+        IdQRAcceso = idQRAcceso;
         Resultado = resultado;
+        FechaCreacion = fechaCreacion;
+        FechaModifica = fechaModifica;
     }
 
-     public Integer getIdIngreso() {
-        return IdIngreso;
+    public Integer getIdRegistroIngreso() {
+        return IdRegistroIngreso;
     }
 
-    public void setIdIngreso(Integer idIngreso) {
-        IdIngreso = idIngreso;
+    public void setIdRegistroIngreso(Integer idRegistroIngreso) {
+        IdRegistroIngreso = idRegistroIngreso;
+    }
+
+    public Integer getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        IdUsuario = idUsuario;
     }
 
     public Integer getIdQRAcceso() {
@@ -29,14 +58,7 @@ public class RegistroIngresoDTO {
 
     public void setIdQRAcceso(Integer idQRAcceso) {
         IdQRAcceso = idQRAcceso;
-    }
-
-    public String getFechaHora() {
-        return FechaHora;
-    }
-
-    public void setFechaHora(String fechaHora) {
-        FechaHora = fechaHora;
+    
     }
 
     public String getResultado() {
@@ -47,15 +69,31 @@ public class RegistroIngresoDTO {
         Resultado = resultado;
     }
 
+    public String getFechaCreacion() {
+        return FechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        FechaCreacion = fechaCreacion;
+    }
+
+    public String getFechaModifica() {
+        return FechaModifica;
+    }
+
+    public void setFechaModifica(String fechaModifica) {
+        FechaModifica = fechaModifica;
+    }
+
     @Override
     public String toString() {
         return getClass().getName()
-        + "\n IdIngreso                      : "+ getIdIngreso           ()
-        + "\n IdQRAcceso                     : "+ getIdQRAcceso          ()
-        + "\n FechaHora                      : "+ getFechaHora           ()
-        + "\n Resultado                      : "+ getResultado           ();
+            + "\n IdRegistroIngreso : " + IdRegistroIngreso
+            + "\n IdUsuario         : " + IdUsuario
+            + "\n IdQRAcceso        : " + IdQRAcceso
+            + "\n Resultado         : " + Resultado
+            + "\n FechaCreacion     : " + FechaCreacion
+            + "\n FechaModifica     : " + FechaModifica;
     }
 
-
-    
 }
