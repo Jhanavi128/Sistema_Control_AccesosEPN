@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 public class WebServer {
 
     public static void start() throws Exception {
-        int port = 8080;
+        int port = 8081;
         
         // 1. Localización del directorio de archivos públicos (HTML, CSS, JS)
         String rootPath = new File("accesoEPN/src/Web/Public").getAbsolutePath();

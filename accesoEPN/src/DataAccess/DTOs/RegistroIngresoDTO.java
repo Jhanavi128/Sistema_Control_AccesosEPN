@@ -33,7 +33,7 @@ public class RegistroIngresoDTO {
         IdUsuario         = idUsuario;
         IdEstudiante      = idEstudiante;
         Resultado         = resultado;
-        Estado            = estado;
+        Estado            ="A";
         FechaCreacion     = fechaCreacion;
         FechaModifica     = fechaModifica;
     }
