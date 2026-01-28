@@ -96,4 +96,4 @@ VALUES ('202420421', '12345', 'Estudiante');
 -- 1: El IdPeriodo (asumiendo que es el de Software 2025-B que ya tenías).
 -- '1799999999': Cédula inventada (debe ser única).
 INSERT INTO Estudiante (IdUsuario, IdPeriodo, CodigoUnico, Nombre, Apellido, Cedula, FechaNacimiento, Sexo) 
-VALUES (last_insert_rowid(), 2, '202420421', 'Diego', 'Pérez', '1799999999', '2004-05-20', 'M');
+VALUES (last_insert_rowid(), 2, '202420421', 'Diego', 'Lima', '1799999999', '2004-05-20', 'M');
