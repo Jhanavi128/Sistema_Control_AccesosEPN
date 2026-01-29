@@ -5,21 +5,23 @@ public class EstudianteDTO {
     private Integer IdEstudiante;
     private Integer IdUsuario;
     private Integer IdPeriodo;
-    private String  Nombre;
-    private String  Apellido;
-    private String  Cedula;
+    private String Nombre;
+    private String Apellido;
+    private String Cedula;
     private String CodigoUnico;
-    private String  FechaNacimiento;
-    private String  Sexo;
-    private String  Estado;
-    private String  FechaCreacion;
-    private String  FechaModifica;
+    private String FechaNacimiento;
+    private String Sexo;
+    private String Estado;
+    private String FechaCreacion;
+    private String FechaModifica;
 
-    private String  carrera; 
-    private String  nombrePeriodo;
+    private transient String carrera;
+    private transient String nombrePeriodo;
 
-    // 🔹 Constructor vacío (OBLIGATORIO para el Factory)
-    public EstudianteDTO() {}
+    private String FotoPath;
+
+    public EstudianteDTO() {
+    }
 
     // 🔹 Constructor base
     public EstudianteDTO(
@@ -31,8 +33,8 @@ public class EstudianteDTO {
             String cedula,
             String codigoUnico,
             String fechaNacimiento,
-            String sexo
-    ) {
+            String sexo,
+            String fotoPath) {
         IdEstudiante = idEstudiante;
         IdUsuario = idUsuario;
         IdPeriodo = idPeriodo;
@@ -42,9 +44,9 @@ public class EstudianteDTO {
         CodigoUnico = codigoUnico;
         FechaNacimiento = fechaNacimiento;
         Sexo = sexo;
+        FotoPath = fotoPath;
     }
 
-    // 🔹 Constructor completo
     public EstudianteDTO(
             Integer idEstudiante,
             Integer idUsuario,
@@ -57,8 +59,8 @@ public class EstudianteDTO {
             String sexo,
             String estado,
             String fechaCreacion,
-            String fechaModifica
-    ) {
+            String fechaModifica,
+            String fotoPath) {
         IdEstudiante = idEstudiante;
         IdUsuario = idUsuario;
         IdPeriodo = idPeriodo;
@@ -71,9 +73,8 @@ public class EstudianteDTO {
         Estado = estado;
         FechaCreacion = fechaCreacion;
         FechaModifica = fechaModifica;
+        FotoPath = fotoPath;
     }
-
-    // 🔹 Getters y Setters
 
     public Integer getIdEstudiante() {
         return IdEstudiante;
@@ -147,6 +148,14 @@ public class EstudianteDTO {
         Sexo = sexo;
     }
 
+    public String getFotoPath() {
+        return FotoPath;
+    }
+
+    public void setFotoPath(String fotoPath) {
+        FotoPath = fotoPath;
+    }
+
     public String getEstado() {
         return Estado;
     }
@@ -170,34 +179,38 @@ public class EstudianteDTO {
     public void setFechaModifica(String fechaModifica) {
         FechaModifica = fechaModifica;
     }
-    public String getCarrera() { 
-        return carrera; 
-    }
-    public void setCarrera(String carrera) { 
-        this.carrera = carrera;
-    }
-    public String getNombrePeriodo() { 
-        return nombrePeriodo; 
-    }
-    public void setNombrePeriodo(String nombrePeriodo) { 
-        this.nombrePeriodo = nombrePeriodo; 
+
+    public String getCarrera() {
+        return carrera;
     }
 
-    
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getNombrePeriodo() {
+        return nombrePeriodo;
+    }
+
+    public void setNombrePeriodo(String nombrePeriodo) {
+        this.nombrePeriodo = nombrePeriodo;
+    }
+
     @Override
     public String toString() {
         return getClass().getName()
-            + "\n IdEstudiante     : " + getIdEstudiante()
-            + "\n IdUsuario        : " + getIdUsuario()
-            + "\n IdPeriodo        : " + getIdPeriodo()
-            + "\n Nombre           : " + getNombre()
-            + "\n Apellido         : " + getApellido()
-            + "\n Cedula           : " + getCedula()
-            + "\n CodigoUnico      : " + getCodigoUnico()
-            + "\n FechaNacimiento  : " + getFechaNacimiento()
-            + "\n Sexo             : " + getSexo()
-            + "\n Estado           : " + getEstado()
-            + "\n FechaCreacion    : " + getFechaCreacion()
-            + "\n FechaModifica    : " + getFechaModifica();
+                + "\n IdEstudiante     : " + getIdEstudiante()
+                + "\n IdUsuario        : " + getIdUsuario()
+                + "\n IdPeriodo        : " + getIdPeriodo()
+                + "\n Nombre           : " + getNombre()
+                + "\n Apellido         : " + getApellido()
+                + "\n Cedula           : " + getCedula()
+                + "\n CodigoUnico      : " + getCodigoUnico()
+                + "\n FechaNacimiento  : " + getFechaNacimiento()
+                + "\n Sexo             : " + getSexo()
+                + "\n FotoPath         : " + getFotoPath()
+                + "\n Estado           : " + getEstado()
+                + "\n FechaCreacion    : " + getFechaCreacion()
+                + "\n FechaModifica    : " + getFechaModifica();
     }
 }

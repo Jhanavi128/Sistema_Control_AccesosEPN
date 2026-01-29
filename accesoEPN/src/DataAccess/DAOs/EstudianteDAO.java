@@ -13,20 +13,17 @@ public class EstudianteDAO extends DataHelperSQLiteDAO<EstudianteDTO> {
     }
 
     public EstudianteDTO getByUsuarioId(Integer idUsuario) throws AppException {
-        // Usamos JOIN para traer datos de la tabla Periodo usando el IdPeriodo del estudiante
         String sql = "SELECT e.*, " +
-                     "       p.Carrera as carrera, " +           // Alias igual al nombre en el DTO
-                     "       p.Nombre  as nombrePeriodo " +      // Alias igual al nombre en el DTO
-                     "FROM Estudiante e " +
-                     "INNER JOIN Periodo p ON e.IdPeriodo = p.IdPeriodo " +
-                     "WHERE e.IdUsuario = ? AND e.Estado = 'A'";
+                "       p.Carrera as carrera, " +
+                "       p.Nombre  as nombrePeriodo " +
+                "FROM Estudiante e " +
+                "INNER JOIN Periodo p ON e.IdPeriodo = p.IdPeriodo " +
+                "WHERE e.IdUsuario = ? AND e.Estado = 'A'";
 
         try (PreparedStatement pstmt = openConnection().prepareStatement(sql)) {
             pstmt.setInt(1, idUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    // mapResultSetToEntity llenará automáticamente carrera y nombrePeriodo
-                    // porque ahora forman parte del ResultSet gracias al JOIN
                     return mapResultSetToEntity(rs);
                 }
             }
@@ -34,5 +31,28 @@ public class EstudianteDAO extends DataHelperSQLiteDAO<EstudianteDTO> {
             throw new AppException("Error al leer estudiante con su periodo", e, getClass(), "getByUsuarioId");
         }
         return null;
+    }
+
+    public java.util.List<EstudianteDTO> searchByText(String text) throws AppException {
+        String sql = "SELECT e.*, p.Carrera as carrera, p.Nombre as nombrePeriodo " +
+                "FROM Estudiante e " +
+                "LEFT JOIN Periodo p ON e.IdPeriodo = p.IdPeriodo " + // LEFT JOIN just in case
+                "WHERE (e.Nombre LIKE ? OR e.Apellido LIKE ? OR e.CodigoUnico LIKE ?) AND e.Estado = 'A'";
+
+        java.util.List<EstudianteDTO> list = new java.util.ArrayList<>();
+        try (PreparedStatement pstmt = openConnection().prepareStatement(sql)) {
+            String q = "%" + text + "%";
+            pstmt.setString(1, q);
+            pstmt.setString(2, q);
+            pstmt.setString(3, q);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapResultSetToEntity(rs));
+                }
+            }
+        } catch (Exception e) {
+            throw new AppException("Error buscando estudiantes", e, getClass(), "searchByText");
+        }
+        return list;
     }
 }

@@ -6,3 +6,11 @@
 ????? LOG  ?? 2026-01-24 18:34:47 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
 ???? SHOW ?? Error al buscar QR por código 
 ????? LOG  ?? 2026-01-24 20:48:32 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
+???? SHOW ?? Error al crear registro 
+????? LOG  ?? 2026-01-29 13:08:28 | EstudianteDAO.create | [SQLITE_ERROR] SQL error or missing database (table Estudiante has no column named carrera)
+???? SHOW ?? Error al crear registro 
+????? LOG  ?? 2026-01-29 13:11:07 | UsuarioDAO.create | [SQLITE_CONSTRAINT_UNIQUE] A UNIQUE constraint failed (UNIQUE constraint failed: Usuario.CodigoUnico)
+???? SHOW ?? Error al crear registro 
+????? LOG  ?? 2026-01-29 13:11:16 | UsuarioDAO.create | [SQLITE_CONSTRAINT_UNIQUE] A UNIQUE constraint failed (UNIQUE constraint failed: Usuario.CodigoUnico)
+???? SHOW ?? Error al actualizar registro 
+????? LOG  ?? 2026-01-29 13:11:28 | EstudianteDAO.update | [SQLITE_ERROR] SQL error or missing database (no such column: carrera)
