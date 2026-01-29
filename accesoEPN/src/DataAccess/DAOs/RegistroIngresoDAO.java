@@ -17,7 +17,10 @@ public class RegistroIngresoDAO extends DataHelperSQLiteDAO<RegistroIngresoDTO> 
          * 3. El nombre exacto de la Primary Key
          */
         super(RegistroIngresoDTO.class, "RegistroIngreso", "IdRegistroIngreso");
+    
     }
+    
+    
 
     /**
      * Nota: No necesitas implementar readAll, readBy, create, update o delete
