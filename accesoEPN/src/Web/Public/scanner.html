@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner - Control de Accesos</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <style>
+        /* Mantenemos tu diseño original intacto */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #reader {
+            flex-grow: 1;
+            width: 100%;
+            background: #000;
+            position: relative;
+        }
+
+        #resultModal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            background: white;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            padding: 30px 20px 80px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(110%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+            text-align: center;
+            color: #333;
+        }
+
+        #resultModal.show { transform: translateY(0); }
+        #resultModal.denied { background-color: #ffebee; color: #d32f2f; }
+        #resultModal.allowed { background-color: #e8f5e9; color: #2e7d32; }
+
+        .student-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .status-header {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sticky-btn-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="position: absolute; top: 20px; width: 100%; text-align: center; color: white; z-index: 10; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+            Escáner de Acceso <span style="font-size:12px; opacity:0.7;">(v2.1)</span>
+        </h2>
+        <div id="reader"></div>
+    </div>
+
+    <div id="resultModal">
+        <div id="modalContent">
+            </div>
+    </div>
+
+    <script>
+        const html5QrCode = new Html5Qrcode("reader");
+        const modal = document.getElementById('resultModal');
+        const modalContent = document.getElementById('modalContent');
+        let isScanning = true;
+
+        // 1. Obtenemos el ID del guardia desde el localStorage (Guardado en el Login)
+        const idGuardia = localStorage.getItem('id_usuario') || 2; 
+
+        const qrConfig = { fps: 30 };
+
+        function onScanSuccess(decodedText) {
+            if (!isScanning) return;
+            isScanning = false;
+            html5QrCode.pause();
+            validateQR(decodedText);
+        }
+
+        async function validateQR(code) {
+    try {
+        // Usamos /api/guardia que es lo que acabamos de registrar en el server
+        const url = `/api/guardia?idGuardia=${idGuardia}`;
+        
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify(code) // Enviamos el texto del QR
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        showResult(data);
+    } catch (err) {
+        console.error(err);
+        alert("Error: " + err.message); // Aquí es donde te salía el 404
+        setTimeout(() => resetScanner(), 1000);
+    }
+}
+
+        function showResult(data) {
+            modal.className = ""; 
+            let content = "";
+            const horaActual = new Date().toLocaleTimeString();
+
+            // 3. Adaptamos la lógica a los campos de tu Java: status, mensaje, nombre
+            if (data.status === "success") {
+                modal.classList.add('allowed', 'show');
+                content = `
+                    <div class="status-header">
+                        <span>&#10004;</span> ${data.mensaje}
+                    </div>
+                    <div style="font-size: 60px; margin-bottom: 10px;">👤</div>
+                    <h3>${data.nombre}</h3>
+                    <p style="font-size: 14px; opacity: 0.8;">Hora ingreso: ${horaActual}</p>
+                `;
+            } else {
+                modal.classList.add('denied', 'show');
+                content = `
+                    <div class="status-header">
+                        <span>&#10008;</span> ACCESO DENEGADO
+                    </div>
+                    <p style="font-size: 20px;">${data.mensaje}</p>
+                    <p style="font-size: 14px; opacity: 0.8;">Hora intento: ${horaActual}</p>
+                `;
+            }
+
+            content += `
+                <div class="sticky-btn-container">
+                    <button onclick="resetScanner()" style="
+                        width: 100%; padding: 15px; border-radius: 12px; border: none; 
+                        background: #333; color: white; font-size: 18px; font-weight: bold;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer;">
+                        Escanear Siguiente
+                    </button>
+                </div>
+            `;
+
+            modalContent.innerHTML = content;
+        }
+
+        function resetScanner() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                isScanning = true;
+                html5QrCode.resume();
+            }, 300);
+        }
+
+        Html5Qrcode.getCameras().then(devices => {
+            if (devices && devices.length) {
+                html5QrCode.start(
+                    { facingMode: "environment" },
+                    qrConfig,
+                    onScanSuccess
+                );
+            }
+        }).catch(err => {
+            console.error("Error cámara", err);
+            document.getElementById('reader').innerHTML = "<p style='color:white;text-align:center;padding-top:100px;'>Error de cámara</p>";
+        });
+    </script>
+</body>
+</html>

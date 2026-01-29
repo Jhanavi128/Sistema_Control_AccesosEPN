@@ -1,42 +1,66 @@
 package DataAccess.DTOs;
 
 public class RegistroIngresoDTO {
-    private Integer IdIngreso;
-    private Integer IdQRAcceso;
-    private String  FechaHora;
+
+    private Integer IdRegistroIngreso;
+    private Integer IdUsuario;     // El Guardia que escanea
+    private Integer IdEstudiante;  // El Estudiante que ingresa
     private String  Resultado;
+    private String  Estado;
+    private String  FechaCreacion;
+    private String  FechaModifica;
 
-    public RegistroIngresoDTO(){}
+    public RegistroIngresoDTO() {}
 
-    public RegistroIngresoDTO(String fechaHora, String resultado) {
-        IdIngreso = 0;
-        IdQRAcceso = 0;
-        FechaHora = fechaHora;
-        Resultado = resultado;
+    // 👉 Constructor para INSERT (Sin IDs autoincrementales ni fechas automáticas)
+    public RegistroIngresoDTO(Integer idUsuario, 
+                              Integer idEstudiante, 
+                              String resultado) {
+        IdUsuario    = idUsuario;
+        IdEstudiante = idEstudiante;
+        Resultado    = resultado;
     }
 
-     public Integer getIdIngreso() {
-        return IdIngreso;
+    // 👉 Constructor completo (Para lectura - READ)
+    public RegistroIngresoDTO(Integer idRegistroIngreso, 
+                              Integer idUsuario, 
+                              Integer idEstudiante, 
+                              String resultado, 
+                              String estado, 
+                              String fechaCreacion, 
+                              String fechaModifica) {
+        IdRegistroIngreso = idRegistroIngreso;
+        IdUsuario         = idUsuario;
+        IdEstudiante      = idEstudiante;
+        Resultado         = resultado;
+        Estado            = estado;
+        FechaCreacion     = fechaCreacion;
+        FechaModifica     = fechaModifica;
     }
 
-    public void setIdIngreso(Integer idIngreso) {
-        IdIngreso = idIngreso;
+    // Getters y Setters
+    public Integer getIdRegistroIngreso() {
+        return IdRegistroIngreso;
     }
 
-    public Integer getIdQRAcceso() {
-        return IdQRAcceso;
+    public void setIdRegistroIngreso(Integer idRegistroIngreso) {
+        IdRegistroIngreso = idRegistroIngreso;
     }
 
-    public void setIdQRAcceso(Integer idQRAcceso) {
-        IdQRAcceso = idQRAcceso;
+    public Integer getIdUsuario() {
+        return IdUsuario;
     }
 
-    public String getFechaHora() {
-        return FechaHora;
+    public void setIdUsuario(Integer idUsuario) {
+        IdUsuario = idUsuario;
     }
 
-    public void setFechaHora(String fechaHora) {
-        FechaHora = fechaHora;
+    public Integer getIdEstudiante() {
+        return IdEstudiante;
+    }
+
+    public void setIdEstudiante(Integer idEstudiante) {
+        IdEstudiante = idEstudiante;
     }
 
     public String getResultado() {
@@ -47,15 +71,39 @@ public class RegistroIngresoDTO {
         Resultado = resultado;
     }
 
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
+    }
+
+    public String getFechaCreacion() {
+        return FechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        FechaCreacion = fechaCreacion;
+    }
+
+    public String getFechaModifica() {
+        return FechaModifica;
+    }
+
+    public void setFechaModifica(String fechaModifica) {
+        FechaModifica = fechaModifica;
+    }
+
     @Override
     public String toString() {
         return getClass().getName()
-        + "\n IdIngreso                      : "+ getIdIngreso           ()
-        + "\n IdQRAcceso                     : "+ getIdQRAcceso          ()
-        + "\n FechaHora                      : "+ getFechaHora           ()
-        + "\n Resultado                      : "+ getResultado           ();
+            + "\n IdRegistroIngreso : " + IdRegistroIngreso
+            + "\n IdUsuario         : " + IdUsuario
+            + "\n IdEstudiante      : " + IdEstudiante
+            + "\n Resultado         : " + Resultado
+            + "\n Estado            : " + Estado
+            + "\n FechaCreacion     : " + FechaCreacion
+            + "\n FechaModifica     : " + FechaModifica;
     }
-
-
-    
-}
+} 

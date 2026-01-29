@@ -3,33 +3,24 @@ package DataAccess.DAOs;
 import DataAccess.DTOs.RegistroIngresoDTO;
 import DataAccess.Helpers.DataHelperSQLiteDAO;
 import Infrastructure.AppException;
-import java.sql.*;
 
 public class RegistroIngresoDAO extends DataHelperSQLiteDAO<RegistroIngresoDTO> {
 
+    /**
+     * Constructor que inicializa el Helper para la tabla RegistroIngreso
+     * @throws AppException si ocurre un error de acceso a datos
+     */
     public RegistroIngresoDAO() throws AppException {
-        // Tabla: RegistroIngreso, Llave Primaria: IdRegistroIngreso
+        /** * Parámetros de super:
+         * 1. La clase DTO para el mapeo por reflexión
+         * 2. El nombre exacto de la tabla en SQLite
+         * 3. El nombre exacto de la Primary Key
+         */
         super(RegistroIngresoDTO.class, "RegistroIngreso", "IdRegistroIngreso");
     }
 
     /**
-     * Este método es el que usa tu Service para guardar el historial.
-     * @param idQR El ID del código que se escaneó.
-     * @param estadoAcceso 'Autorizado' o 'Rechazado'.
+     * Nota: No necesitas implementar readAll, readBy, create, update o delete
+     * porque ya están heredados y automatizados por tu DataHelperSQLiteDAO.
      */
-    public boolean registrar(Integer idQR, String estadoAcceso) {
-        // Usamos la función datetime('now') de SQLite para que la fecha sea automática
-        String sql = "INSERT INTO RegistroIngreso (IdQRAcceso, EstadoAcceso, FechaIngreso) VALUES (?, ?, datetime('now'))";
-        
-        try (PreparedStatement pstmt = openConnection().prepareStatement(sql)) {
-            pstmt.setInt(1, idQR);
-            pstmt.setString(2, estadoAcceso);
-            
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            // Si hay error (como que el ID no existe), lo atrapamos aquí
-            System.out.println("Error al registrar en la base: " + e.getMessage());
-            return false;
-        }
-    }
 }

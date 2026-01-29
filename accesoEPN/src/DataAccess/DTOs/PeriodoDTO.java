@@ -3,7 +3,7 @@ package DataAccess.DTOs;
 public class PeriodoDTO {
     private Integer IdPeriodo;
     private String  Carrera;
-    private String  Semestre;
+    private Integer  Semestre;
     private String  Nombre;
     private String  FechaInicio;
     private String  FechaFin;
@@ -11,18 +11,16 @@ public class PeriodoDTO {
     private String  FechaCreacion;
     private String  FechaModifica;
 
-    public PeriodoDTO(){}
-
-    public PeriodoDTO(String carrera, String semestre, String nombre, String fechaInicio, String fechaFin) {
-        IdPeriodo = 0;
+    public PeriodoDTO(Integer idPeriodo, String carrera, Integer semestre, String nombre) {
+        IdPeriodo = idPeriodo;
         Carrera = carrera;
         Semestre = semestre;
         Nombre = nombre;
-        FechaInicio = fechaInicio;
-        FechaFin = fechaFin;
+
     }
 
-    public PeriodoDTO(Integer idPeriodo, String carrera, String semestre, String nombre, String fechaInicio,
+
+    public PeriodoDTO(Integer idPeriodo, String carrera, Integer semestre, String nombre, String fechaInicio,
             String fechaFin, String estado, String fechaCreacion, String fechaModifica) {
         IdPeriodo = idPeriodo;
         Carrera = carrera;
@@ -35,6 +33,10 @@ public class PeriodoDTO {
         FechaModifica = fechaModifica;
     }
 
+
+    public PeriodoDTO(){}
+
+    
     public Integer getIdPeriodo() {
         return IdPeriodo;
     }
@@ -51,11 +53,11 @@ public class PeriodoDTO {
         Carrera = carrera;
     }
 
-    public String getSemestre() {
+    public Integer getSemestre() {
         return Semestre;
     }
 
-    public void setSemestre(String semestre) {
+    public void setSemestre(Integer semestre) {
         Semestre = semestre;
     }
 

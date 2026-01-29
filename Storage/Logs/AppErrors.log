@@ -2,3 +2,7 @@
 ????? LOG  ?? 2026-01-23 21:37:56 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
 ???? SHOW ?? Error al buscar QR por código 
 ????? LOG  ?? 2026-01-23 21:40:10 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
+???? SHOW ?? Error al buscar QR por código 
+????? LOG  ?? 2026-01-24 18:34:47 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
+???? SHOW ?? Error al buscar QR por código 
+????? LOG  ?? 2026-01-24 20:48:32 | QRAccesoDAO.readByCodigo | No suitable driver found for jdbc:sqlite:Storage\DataBase\bd_acceso_epn.sqlite
