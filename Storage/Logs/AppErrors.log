@@ -1,0 +1,10 @@
+╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
+╰──── LOG  ❱❱ 2026-01-29 20:03:23 | StudentManagementPanel.saveStudent | El Código Único es obligatorio.
+╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
+╰──── LOG  ❱❱ 2026-01-29 20:27:43 | StudentManagementPanel.saveStudent | El Nombre es obligatorio.
+╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
+╰──── LOG  ❱❱ 2026-01-29 20:28:04 | StudentManagementPanel.saveStudent | El Apellido es obligatorio.
+╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
+╰──── LOG  ❱❱ 2026-01-29 20:28:19 | StudentManagementPanel.saveStudent | El Código Único debe tener exactamente 9 dígitos.
+╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
+╰──── LOG  ❱❱ 2026-01-29 21:29:24 | StudentManagementPanel.saveStudent | El Nombre es obligatorio.

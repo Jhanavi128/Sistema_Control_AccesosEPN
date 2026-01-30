@@ -1,0 +1,284 @@
+<mxfile host="65bd71144e">
+    <diagram id="ClassDiagram" name="Page-1">
+        <mxGraphModel dx="2200" dy="1700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                
+                <!-- TITULO PRINCIPAL -->
+                <mxCell id="title" value="&lt;b style=&quot;font-size: 32px&quot;&gt;Sistema Control Accesos EPN&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 18px&quot;&gt;Diagrama de Clases - Arquitectura N-Capas&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="20" width="520" height="70" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA APP -->
+                <mxCell id="layerApp" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE APLICACIÓN&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#d79b00;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="110" width="280" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgApp" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;App&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="150" width="340" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="classApp" value="App" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgApp">
+                    <mxGeometry x="20" y="50" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppMethod" value="+ main(String[] args): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classApp">
+                    <mxGeometry y="26" width="300" height="44" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA INFRAESTRUCTURA -->
+                <mxCell id="layerInfra" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE INFRAESTRUCTURA&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="110" width="360" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgInfra" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;Infrastructure&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=200;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="150" width="560" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppConfig" value="AppConfig" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgInfra">
+                    <mxGeometry x="20" y="50" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppConfigAttr" value="+ DATABASE: String&#10;+ LOG_PATH: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classAppConfig">
+                    <mxGeometry y="26" width="160" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppException" value="AppException" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgInfra">
+                    <mxGeometry x="200" y="50" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppExceptionMethod" value="+ saveLogFile(): void&#10;+ handle(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classAppException">
+                    <mxGeometry y="26" width="170" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppStyle" value="AppStyle" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgInfra">
+                    <mxGeometry x="390" y="50" width="150" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAppStyleAttr" value="+ FONT: Font" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classAppStyle">
+                    <mxGeometry y="26" width="150" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA DATA ACCESS -->
+                <mxCell id="layerDA" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE ACCESO A DATOS&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="320" width="350" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgDataAccess" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;DataAccess&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=200;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="360" width="940" height="520" as="geometry"/>
+                </mxCell>
+                
+                <!-- SubPaquete DTOs -->
+                <mxCell id="subLayerDTO" value="&lt;b style=&quot;font-size:14px&quot;&gt;Data Transfer Objects&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#9673a6;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="130" y="50" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="subPkgDTOs" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="20" y="80" width="440" height="200" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classUsuarioDTO" value="UsuarioDTO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="30" y="100" width="190" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="classUsuarioDTOAttr" value="- IdUsuario: Integer&#10;- CodigoUnico: String&#10;- Contrasena: String&#10;- Rol: String&#10;- Estado: String&#10;- FechaCreacion: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classUsuarioDTO">
+                    <mxGeometry y="26" width="190" height="104" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classEstudianteDTO" value="EstudianteDTO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="240" y="100" width="190" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="classEstudianteDTOAttr" value="- IdEstudiante: Integer&#10;- Nombre: String&#10;- Apellido: String&#10;- Cedula: String&#10;- CodigoUnico: String&#10;- FotoPath: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classEstudianteDTO">
+                    <mxGeometry y="26" width="190" height="104" as="geometry"/>
+                </mxCell>
+                
+                <!-- SubPaquete DAOs -->
+                <mxCell id="subLayerDAO" value="&lt;b style=&quot;font-size:14px&quot;&gt;Data Access Objects&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#d79b00;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="620" y="50" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="subPkgDAOs" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="480" y="80" width="440" height="200" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="interfaceIDAO" value="&lt;&lt;interface&gt;&gt;&#10;IDAO&lt;T&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="490" y="100" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="interfaceIDAOMethods" value="+ create(T): boolean&#10;+ readAll(): List&lt;T&gt;&#10;+ readBy(id): T&#10;+ update(T): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="interfaceIDAO">
+                    <mxGeometry y="40" width="190" height="80" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classUsuarioDAO" value="UsuarioDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="710" y="100" width="190" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classUsuarioDAOImpl" value="implements IDAO&lt;UsuarioDTO&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2;" vertex="1" parent="classUsuarioDAO">
+                    <mxGeometry y="26" width="190" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classEstudianteDAO" value="EstudianteDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="710" y="180" width="190" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classEstudianteDAOImpl" value="implements IDAO&lt;EstudianteDTO&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2;" vertex="1" parent="classEstudianteDAO">
+                    <mxGeometry y="26" width="190" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- Helpers -->
+                <mxCell id="subLayerHelpers" value="&lt;b style=&quot;font-size:14px&quot;&gt;Helpers&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="210" y="310" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="classDataHelper" value="DataHelperSQLiteDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="30" y="350" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="classDataHelperMethod" value="+ getConnection(): Connection&#10;+ execute(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classDataHelper">
+                    <mxGeometry y="26" width="200" height="44" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classSchemaMigrator" value="SchemaMigrator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDataAccess">
+                    <mxGeometry x="260" y="350" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classSchemaMigratorMethod" value="+ checkAndMigrate(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classSchemaMigrator">
+                    <mxGeometry y="26" width="200" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA BUSINESS LOGIC -->
+                <mxCell id="layerBL" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE LÓGICA DE NEGOCIO&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="1040" y="320" width="390" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgBusinessLogic" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;BusinessLogic&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=200;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="1040" y="360" width="540" height="520" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="subLayerEntities" value="&lt;b style=&quot;font-size:14px&quot;&gt;Entidades&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#6c8ebf;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="110" y="50" width="100" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classFactoryBL" value="FactoryBL&lt;T&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="20" y="90" width="220" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="classFactoryBLMethod" value="+ create(T): boolean&#10;+ readAll(): List&lt;T&gt;&#10;+ update(T): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classFactoryBL">
+                    <mxGeometry y="26" width="220" height="60" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classUsuario" value="Usuario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="270" y="90" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="classUsuarioAttr" value="+ data: UsuarioDTO&#10;- factory: FactoryBL&lt;UsuarioDTO&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classUsuario">
+                    <mxGeometry y="26" width="240" height="44" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classEstudiante" value="&lt;&lt;abstract&gt;&gt;&#10;Estudiante" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="270" y="180" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="classEstudianteAttr" value="+ data: EstudianteDTO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classEstudiante">
+                    <mxGeometry y="40" width="240" height="20" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="subLayerServices" value="&lt;b style=&quot;font-size:14px&quot;&gt;Servicios&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#6c8ebf;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="90" y="280" width="90" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classBLLogin" value="BLLogin" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="20" y="320" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classBLLoginMethod" value="+ autenticar(): Usuario" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classBLLogin">
+                    <mxGeometry y="26" width="220" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classBLValidarQR" value="BLValidarQR" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="270" y="320" width="240" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classBLValidarQRMethod" value="+ validar(codigoQR: String): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classBLValidarQR">
+                    <mxGeometry y="26" width="240" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classBLEstudianteManagement" value="BLEstudianteManagement" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgBusinessLogic">
+                    <mxGeometry x="20" y="400" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classBLEstudianteManagementMethod" value="+ crearEstudiante(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classBLEstudianteManagement">
+                    <mxGeometry y="26" width="220" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA WEB -->
+                <mxCell id="layerWeb" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE PRESENTACIÓN - WEB&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="920" width="390" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgWeb" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;Web.Server&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=180;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="960" width="560" height="200" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classWebServer" value="WebServer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgWeb">
+                    <mxGeometry x="20" y="50" width="230" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="classWebServerMethod" value="+ start(): void&#10;+ stop(): void&#10;+ setupRoutes(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classWebServer">
+                    <mxGeometry y="26" width="230" height="60" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classLoginHandler" value="LoginHandler" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgWeb">
+                    <mxGeometry x="280" y="50" width="250" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classLoginHandlerMethod" value="+ handle(Request, Response): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classLoginHandler">
+                    <mxGeometry y="26" width="250" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classValidateHandler" value="ValidateHandler" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgWeb">
+                    <mxGeometry x="280" y="120" width="250" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classValidateHandlerMethod" value="+ handle(Request, Response): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="classValidateHandler">
+                    <mxGeometry y="26" width="250" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- CAPA DESKTOP -->
+                <mxCell id="layerDesktop" value="&lt;b style=&quot;font-size:20px&quot;&gt;CAPA DE PRESENTACIÓN - DESKTOP&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#d79b00;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="920" width="450" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkgDesktop" value="&lt;&lt;package&gt;&gt;&lt;br&gt;&lt;b&gt;App.DesktopApp&lt;/b&gt;" style="shape=folder;fontStyle=1;tabWidth=200;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="960" width="560" height="200" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="subLayerForms" value="&lt;b style=&quot;font-size:14px&quot;&gt;Formularios&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#d79b00;" vertex="1" parent="pkgDesktop">
+                    <mxGeometry x="20" y="50" width="120" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classAdminPanel" value="AdminPanel" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDesktop">
+                    <mxGeometry x="20" y="90" width="240" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classAdminPanelMethod" value="extends JPanel" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2;" vertex="1" parent="classAdminPanel">
+                    <mxGeometry y="26" width="240" height="30" as="geometry"/>
+                </mxCell>
+                
+                <mxCell id="classStudentManagement" value="StudentManagementPanel" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" vertex="1" parent="pkgDesktop">
+                    <mxGeometry x="290" y="90" width="240" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="classStudentManagementMethod" value="extends JPanel" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2;" vertex="1" parent="classStudentManagement">
+                    <mxGeometry y="26" width="240" height="30" as="geometry"/>
+                </mxCell>
+                
+                <!-- RELACIONES -->
+                <mxCell id="relBLtoDA" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=2;" edge="1" parent="1" source="pkgBusinessLogic" target="pkgDataAccess">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="relBLtoDALabel" value="&lt;b&gt;usa&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="relBLtoDA">
+                    <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                
+                <mxCell id="relWebToBL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=2;" edge="1" parent="1" source="pkgWeb" target="pkgBusinessLogic">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="300" y="1240"/>
+                            <mxPoint x="1310" y="1240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="relWebToBLLabel" value="&lt;b&gt;usa&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="relWebToBL">
+                    <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                
+                <mxCell id="relDesktopToBL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=2;" edge="1" parent="1" source="pkgDesktop" target="pkgBusinessLogic">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="900"/>
+                            <mxPoint x="1310" y="900"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="relDesktopToBLLabel" value="&lt;b&gt;usa&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="relDesktopToBL">
+                    <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

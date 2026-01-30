@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "accesoEPN\\src"
+    ],
+    "java.project.referencedLibraries": [
+        "accesoEPN\\lib\\gson-2.10.1.jar",
+        "accesoEPN\\lib\\slf4j-api.jar",
+        "accesoEPN\\lib\\slf4j-simple.jar",
+        "accesoEPN\\lib\\sqlite-jdbc-3.51.0.0.jar"
+    ]
+}

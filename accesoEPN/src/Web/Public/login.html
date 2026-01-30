@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso EPN - Login</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .text-error {
+            color: #ff4d4d;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Acceso EPN</h1>
+            <p style="margin-bottom: 30px; font-weight: 300;">Ingrese sus credenciales</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="codigo">Código Único</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ej: 2024..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pin">PIN de Acceso</label>
+                    <input type="password" id="pin" name="pin" placeholder="****" required>
+                </div>
+
+                <p id="errorMsg" class="text-error hidden">⚠️ Credenciales Incorrectas o usuario no activo.</p>
+
+                <button type="submit" id="loginBtn" class="btn btn-primary">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Siempre limpiar localStorage al cargar la página de login
+        localStorage.clear();
+
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMsg = document.getElementById('errorMsg');
+
+        loginForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            loginBtn.disabled = true;
+            loginBtn.innerText = "Verificando...";
+            errorMsg.classList.add('hidden');
+
+            const codigo = document.getElementById('codigo').value;
+            const pin = document.getElementById('pin').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'ngrok-skip-browser-warning': 'true',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate'
+                    },
+                    body: `codigo=${encodeURIComponent(codigo)}&pin=${encodeURIComponent(pin)}`
+                });
+
+                if (!response.ok) throw new Error("Error en el servidor");
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Guardar datos de sesión
+                    localStorage.setItem('user_code', data.userCode);
+                    localStorage.setItem('id_usuario', data.idUsuario);
+
+                    // Redirección limpia con replace para evitar historial
+                    window.location.replace(data.redirect);
+                } else {
+                    errorMsg.classList.remove('hidden');
+                    loginBtn.disabled = false;
+                    loginBtn.innerText = "Ingresar";
+                }
+            } catch (err) {
+                console.error("Error:", err);
+                alert("⚠️ Error de conexión.");
+                loginBtn.disabled = false;
+                loginBtn.innerText = "Ingresar";
+            }
+        });
+    </script>
+</body>
+
+</html>
