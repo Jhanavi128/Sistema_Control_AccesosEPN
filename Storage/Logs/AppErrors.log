@@ -6,3 +6,27 @@
 ╰──── LOG  ❱❱ 2026-01-29 20:28:04 | StudentManagementPanel.saveStudent | El Apellido es obligatorio.
 ╭── SHOW ❱❱ Validación fallida : StudentManagementPanel.saveStudent 
 ╰──── LOG  ❱❱ 2026-01-29 20:28:19 | StudentManagementPanel.saveStudent | El Código Único debe tener exactamente 9 dígitos.
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : PeriodoDAO.readAll 
+????? LOG  ?? 2026-01-29 21:30:32 | PeriodoDAO.readAll | Error al leer todos los registros
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : PeriodoDAO.readAll 
+????? LOG  ?? 2026-01-29 21:36:38 | PeriodoDAO.readAll | Error al leer todos los registros
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : EstudianteDAO.searchByText 
+????? LOG  ?? 2026-01-29 21:36:40 | EstudianteDAO.searchByText | Error buscando estudiantes
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : UsuarioDAO.readAll 
+????? LOG  ?? 2026-01-29 21:36:41 | UsuarioDAO.readAll | Error al leer todos los registros
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : RegistroIngresoDAO.readAll 
+????? LOG  ?? 2026-01-29 21:36:41 | RegistroIngresoDAO.readAll | Error al leer todos los registros
+??? SHOW ?? Error al leer todos los registros : BLRegistroIngreso.obtenerTodos() 
+????? LOG  ?? 2026-01-29 21:36:41 | BLRegistroIngreso.obtenerTodos() | Error al recuperar el historial de ingresos
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : PeriodoDAO.readAll 
+????? LOG  ?? 2026-01-29 21:37:21 | PeriodoDAO.readAll | Error al leer todos los registros
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : EstudianteDAO.searchByText 
+????? LOG  ?? 2026-01-29 21:38:37 | EstudianteDAO.searchByText | Error buscando estudiantes
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : UsuarioDAO.readAll 
+????? LOG  ?? 2026-01-29 21:38:37 | UsuarioDAO.readAll | Error al leer todos los registros
+??? SHOW ?? No suitable driver found for jdbc:sqlite:accesoEPN/Storage/DataBase/bd_acceso_epn.sqlite : RegistroIngresoDAO.readAll 
+????? LOG  ?? 2026-01-29 21:38:37 | RegistroIngresoDAO.readAll | Error al leer todos los registros
+??? SHOW ?? Error al leer todos los registros : BLRegistroIngreso.obtenerTodos() 
+????? LOG  ?? 2026-01-29 21:38:37 | BLRegistroIngreso.obtenerTodos() | Error al recuperar el historial de ingresos
+╭── SHOW ❱❱ Ups! Error inesperado. Por favor, contacte al administrador del sistema. : BLEstudianteManagement.crearEstudiante 
+╰──── LOG  ❱❱ 2026-01-29 22:04:13 | BLEstudianteManagement.crearEstudiante | La Cédula ya está registrada por otro estudiante.
