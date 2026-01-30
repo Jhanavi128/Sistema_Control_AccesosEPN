@@ -1,36 +1,68 @@
 package DataAccess.DTOs;
 
 public class EstudianteDTO {
+
     private Integer IdEstudiante;
+    private Integer IdUsuario;
     private Integer IdPeriodo;
-    private String  Nombre;
-    private String  Apellido;
-    private String  Cedula;
-    private String  CodigoUnico;
-    private String  FechaNacimiento;
-    private String  Sexo;
-    private String  Estado;
-    private String  FechaCreacion;
-    private String  FechaModifica;
+    private String Nombre;
+    private String Apellido;
+    private String Cedula;
+    private String CodigoUnico;
+    private String FechaNacimiento;
+    private String Sexo;
+    private String Estado;
+    private String FechaCreacion;
+    private String FechaModifica;
 
-    public EstudianteDTO(){}
+    private transient String carrera;
+    private transient String nombrePeriodo;
 
-    public EstudianteDTO(String nombre, String apellido, String cedula, String codigoUnico, String fechaNacimiento,
-            String sexo) {
-        IdEstudiante = 0;
-        IdPeriodo = 0;
+    private String FotoPath;
+
+    public EstudianteDTO() {
+    }
+
+    // 🔹 Constructor base
+    public EstudianteDTO(
+            Integer idEstudiante,
+            Integer idUsuario,
+            Integer idPeriodo,
+            String nombre,
+            String apellido,
+            String cedula,
+            String codigoUnico,
+            String fechaNacimiento,
+            String sexo,
+            String fotoPath) {
+        IdEstudiante = idEstudiante;
+        IdUsuario = idUsuario;
+        IdPeriodo = idPeriodo;
         Nombre = nombre;
         Apellido = apellido;
         Cedula = cedula;
         CodigoUnico = codigoUnico;
         FechaNacimiento = fechaNacimiento;
         Sexo = sexo;
+        FotoPath = fotoPath;
     }
 
-    public EstudianteDTO(Integer idEstudiante, Integer idPeriodo, String nombre, String apellido, String cedula,
-            String codigoUnico, String fechaNacimiento, String sexo, String estado, String fechaCreacion,
-            String fechaModifica) {
+    public EstudianteDTO(
+            Integer idEstudiante,
+            Integer idUsuario,
+            Integer idPeriodo,
+            String nombre,
+            String apellido,
+            String cedula,
+            String codigoUnico,
+            String fechaNacimiento,
+            String sexo,
+            String estado,
+            String fechaCreacion,
+            String fechaModifica,
+            String fotoPath) {
         IdEstudiante = idEstudiante;
+        IdUsuario = idUsuario;
         IdPeriodo = idPeriodo;
         Nombre = nombre;
         Apellido = apellido;
@@ -41,14 +73,23 @@ public class EstudianteDTO {
         Estado = estado;
         FechaCreacion = fechaCreacion;
         FechaModifica = fechaModifica;
+        FotoPath = fotoPath;
     }
 
-     public Integer getIdEstudiante() {
+    public Integer getIdEstudiante() {
         return IdEstudiante;
     }
 
     public void setIdEstudiante(Integer idEstudiante) {
         IdEstudiante = idEstudiante;
+    }
+
+    public Integer getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        IdUsuario = idUsuario;
     }
 
     public Integer getIdPeriodo() {
@@ -107,6 +148,14 @@ public class EstudianteDTO {
         Sexo = sexo;
     }
 
+    public String getFotoPath() {
+        return FotoPath;
+    }
+
+    public void setFotoPath(String fotoPath) {
+        FotoPath = fotoPath;
+    }
+
     public String getEstado() {
         return Estado;
     }
@@ -131,22 +180,37 @@ public class EstudianteDTO {
         FechaModifica = fechaModifica;
     }
 
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getNombrePeriodo() {
+        return nombrePeriodo;
+    }
+
+    public void setNombrePeriodo(String nombrePeriodo) {
+        this.nombrePeriodo = nombrePeriodo;
+    }
+
     @Override
     public String toString() {
         return getClass().getName()
-        + "\n IdEstudiante                   : "+ getIdEstudiante        ()
-        + "\n IdPeriodo                      : "+ getIdPeriodo           ()
-        + "\n Nombre                         : "+ getNombre              ()
-        + "\n Apellido                       : "+ getApellido            ()  
-        + "\n Cedula                         : "+ getCedula              ()
-        + "\n CodigoUnico                    : "+ getCodigoUnico         ()
-        + "\n FechaNacimiento                : "+ getFechaNacimiento     ()
-        + "\n Sexo                           : "+ getSexo                ()
-        + "\n Estado                         : "+ getEstado              ()
-        + "\n FechaCreacion                  : "+ getFechaCreacion       ()
-        + "\n FechaModifica                  : "+ getFechaModifica       ();
+                + "\n IdEstudiante     : " + getIdEstudiante()
+                + "\n IdUsuario        : " + getIdUsuario()
+                + "\n IdPeriodo        : " + getIdPeriodo()
+                + "\n Nombre           : " + getNombre()
+                + "\n Apellido         : " + getApellido()
+                + "\n Cedula           : " + getCedula()
+                + "\n CodigoUnico      : " + getCodigoUnico()
+                + "\n FechaNacimiento  : " + getFechaNacimiento()
+                + "\n Sexo             : " + getSexo()
+                + "\n FotoPath         : " + getFotoPath()
+                + "\n Estado           : " + getEstado()
+                + "\n FechaCreacion    : " + getFechaCreacion()
+                + "\n FechaModifica    : " + getFechaModifica();
     }
-
-
-    
 }

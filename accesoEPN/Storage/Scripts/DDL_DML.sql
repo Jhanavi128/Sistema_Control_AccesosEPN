@@ -1,4 +1,7 @@
--- database: storage\Databases\bd_acceso_epn.sqlite
+-- ========================================
+-- BASE DE DATOS OPTIMIZADA
+-- ========================================
+
 DROP TABLE IF EXISTS RegistroIngreso;
 DROP TABLE IF EXISTS QRAcceso;
 DROP TABLE IF EXISTS Estudiante;
@@ -6,74 +9,91 @@ DROP TABLE IF EXISTS Usuario;
 DROP TABLE IF EXISTS Periodo;
 
 CREATE TABLE Periodo(
-    IdPeriodo        INTEGER PRIMARY KEY AUTOINCREMENT,
-    Carrera          TEXT NOT NULL,
-    Semestre         INTEGER NOT NULL CHECK (Semestre BETWEEN 1 AND 10),
-    Nombre           VARCHAR(15) NOT NULL UNIQUE,
-    FechaInicio      TEXT NOT NULL,
-    FechaFin         TEXT NOT NULL,
-    Estado           VARCHAR(1) NOT NULL DEFAULT 'A',
-    FechaCreacion    DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
-    FechaModifica    DATETIME NOT NULL DEFAULT (datetime('now','localtime'))
+    IdPeriodo       INTEGER PRIMARY KEY AUTOINCREMENT,
+    Carrera         TEXT NOT NULL,
+    Semestre        INTEGER NOT NULL,
+    Nombre          TEXT NOT NULL UNIQUE,
+    FechaInicio     TEXT NOT NULL,
+    FechaFin        TEXT NOT NULL,
+    Estado          TEXT DEFAULT 'A',
+    FechaCreacion   DATETIME DEFAULT (datetime('now','localtime')),
+    FechaModifica   DATETIME DEFAULT (datetime('now','localtime'))
 );
 
 CREATE TABLE Usuario (
     IdUsuario       INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nombre          VARCHAR(100) NOT NULL,
-    Apellido        VARCHAR(100) NOT NULL,
-    Correo          VARCHAR(100) UNIQUE NOT NULL,
-    Contrasena      VARCHAR(255) NOT NULL,
-    Rol             VARCHAR(50) NOT NULL,
-    Estado          INTEGER DEFAULT TRUE,
-    FechaCreacion   DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FechaModifica   DATETIME
+    CodigoUnico     TEXT UNIQUE NOT NULL, -- Sigue aquí para el Login
+    Contrasena      TEXT NOT NULL,
+    Rol             TEXT NOT NULL CHECK (Rol IN ('Admin','Estudiante','Guardia')),
+    Estado          TEXT DEFAULT 'A',
+    FechaCreacion   DATETIME DEFAULT (datetime('now','localtime')),
+    FechaModifica   DATETIME DEFAULT (datetime('now','localtime'))
 );
 
 CREATE TABLE Estudiante(
-    IdEstudiante      INTEGER PRIMARY KEY AUTOINCREMENT,
-    IdPeriodo         INTEGER NOT NULL,
-    Nombre            VARCHAR(15) NOT NULL,
-    Apellido          VARCHAR(15) NOT NULL,
-    Cedula            VARCHAR(10) NOT NULL UNIQUE,
-    CodigoUnico       VARCHAR(9) NOT NULL UNIQUE,
-    FechaNacimiento   TEXT NOT NULL,
-    Sexo              TEXT NOT NULL CHECK (Sexo IN ('M','F')),
-    Estado            VARCHAR(1) NOT NULL DEFAULT 'A',
-    FechaCreacion     DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
-    FechaModifica     DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
+    IdEstudiante     INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdUsuario        INTEGER NOT NULL UNIQUE,
+    IdPeriodo        INTEGER NOT NULL,
+    CodigoUnico      TEXT NOT NULL, -- 🔹 AGREGADO: Para mapeo directo en el DAO
+    Nombre           TEXT NOT NULL,
+    Apellido         TEXT NOT NULL,
+    Cedula           TEXT UNIQUE NOT NULL,
+    FechaNacimiento  TEXT NOT NULL,
+    Sexo             TEXT CHECK (Sexo IN ('M','F')),
+    Estado           TEXT DEFAULT 'A',
+    FechaCreacion    DATETIME DEFAULT (datetime('now','localtime')),
+    FechaModifica    DATETIME DEFAULT (datetime('now','localtime')),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
     FOREIGN KEY (IdPeriodo) REFERENCES Periodo(IdPeriodo)
 );
 
 CREATE TABLE QRAcceso (
     IdQRAcceso       INTEGER PRIMARY KEY AUTOINCREMENT,
     IdUsuario        INTEGER NOT NULL,
-    CodigoQR         VARCHAR(255) UNIQUE NOT NULL,
-    Estado           INTEGER DEFAULT 1,
-    FechaGeneracion  DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CodigoQR         TEXT UNIQUE NOT NULL,
     FechaExpiracion  DATETIME,
+    Estado           TEXT DEFAULT 'A',
+    FechaCreacion    DATETIME DEFAULT (datetime('now','localtime')),
+    FechaModifica    DATETIME DEFAULT (datetime('now','localtime')),
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
 );
 
 CREATE TABLE RegistroIngreso(
     IdRegistroIngreso INTEGER PRIMARY KEY AUTOINCREMENT,
-    IdQRAcceso        INTEGER NOT NULL,
-    FechaHora         TEXT NOT NULL,
-    Resultado         TEXT NOT NULL CHECK (Resultado IN ('Autorizado','Rechazado','Inválido')),
-    FOREIGN KEY (IdQRAcceso) REFERENCES QRAcceso (IdQRAcceso)
+    IdUsuario         INTEGER NOT NULL, -- El Guardia que escanea
+    IdEstudiante      INTEGER NOT NULL, -- El Estudiante que ingresa
+    Resultado         TEXT CHECK (Resultado IN ('Autorizado','Rechazado','Invalido')),
+    Estado            TEXT DEFAULT 'A',
+    FechaCreacion     DATETIME DEFAULT (datetime('now','localtime')),
+    FechaModifica     DATETIME DEFAULT (datetime('now','localtime')),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante)
 );
 
--- 1. Insertar un Periodo Académico
-INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin)
-VALUES ('Software', 6, '2025-B', '2025-10-01', '2026-03-01');
+-- ==============================
+-- INSERCIÓN DE DATOS DE PRUEBA
+-- ==============================
+INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin) 
+VALUES ('Ingeniería en Software', 2, '2025-B','2025-10-01', '2026-03-01');
 
--- 2. Insertar un Usuario (quien genera/valida el acceso)
-INSERT INTO Usuario (Nombre, Apellido, Correo, Contrasena, Rol)
-VALUES ('Danny', 'Lanchimba', 'danny.lanchimba@epn.edu.ec', '1234', 'Admin');
+INSERT INTO Periodo (Carrera, Semestre, Nombre, FechaInicio, FechaFin) 
+VALUES ('Ingeniería civil', 2, '2000-A','2025-10-01', '2026-03-01');
 
--- 3. Insertar un Estudiante vinculado al periodo
-INSERT INTO Estudiante (IdPeriodo, Nombre, Apellido, Cedula, CodigoUnico, FechaNacimiento, Sexo)
-VALUES (1, 'Danny', 'Lanchimba', '1700000000', '202210000', '2000-01-01', 'M');
+INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) VALUES ('202210001', '1234', 'Estudiante');
+INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) VALUES ('GUARDIA01', '1234', 'Guardia');
 
--- 4. Insertar el QR de prueba vinculado al Usuario 1
-INSERT INTO QRAcceso (IdUsuario, CodigoQR, Estado)
-VALUES (1, 'EPN-2026-ABC', 1);
+-- Ahora Estudiante ya tiene su propio CodigoUnico (Redundancia controlada para optimizar lectura)
+INSERT INTO Estudiante (IdUsuario, IdPeriodo, CodigoUnico, Nombre, Apellido, Cedula, FechaNacimiento, Sexo) 
+VALUES (1, 1, '202210001', 'Jhanavi', 'Apellido', '1700000001', '2001-01-01', 'F');
+
+-- 1. Insertamos el Usuario para el Login
+INSERT INTO Usuario (CodigoUnico, Contrasena, Rol) 
+VALUES ('202420421', '12345', 'Estudiante');
+
+-- 2. Insertamos los datos en la tabla Estudiante
+-- Explicación de los valores:
+-- last_insert_rowid(): Toma el ID del usuario 'diego' que acabamos de crear.
+-- 1: El IdPeriodo (asumiendo que es el de Software 2025-B que ya tenías).
+-- '1799999999': Cédula inventada (debe ser única).
+INSERT INTO Estudiante (IdUsuario, IdPeriodo, CodigoUnico, Nombre, Apellido, Cedula, FechaNacimiento, Sexo) 
+VALUES (last_insert_rowid(), 2, '202420421', 'Diego', 'Lima', '1799999999', '2004-05-20', 'M');
